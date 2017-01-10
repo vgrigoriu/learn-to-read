@@ -2,8 +2,10 @@
   "name": "learn-to-read",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://vgrigoriu.github.io/learn-to-read/",
   "devDependencies": {
     "flow-bin": "^0.37.4",
+    "gh-pages": "^0.12.0",
     "react-scripts": "0.8.5"
   },
   "dependencies": {
@@ -15,6 +17,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "flow": "flow"
+    "flow": "flow",
+    "deploy": "npm run build&&gh-pages -d build"
   }
 }
