@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import banana from './images/banana.jpg';
+import Question from './Question';
 
 class Game extends Component {
     render() {
+        const item = {
+            image: banana,
+            name: 'banană'
+        };
+        const otherItems = [
+            { name: 'barză' },
+            { name: 'balon' }
+        ];
         return (
-            <div>
-                <img src={banana} alt='banană' />
-                <div onClick={() => alert('balon')}>BALON</div>
-                <div onClick={() => alert('barză')}>BARZĂ</div>
-                <div onClick={() => alert('banană')}>BANANĂ</div>
-            </div>
+            <Question item={item}
+                      otherItems={otherItems} />
         );
     }
 }
