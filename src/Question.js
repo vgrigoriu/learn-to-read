@@ -20,7 +20,8 @@ export default function Question(props) {
             <div>
                 <img src={correctAnswer.image}
                     alt={correctAnswer.name}
-                    title={correctAnswer.name} />
+                    title={correctAnswer.name}
+                    style={{height: '300px'}} />
             </div>
             {options}
         </div>

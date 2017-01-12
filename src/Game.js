@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import banana from './images/banana.jpg';
+import koala from './images/koala.jpg';
+import panda from './images/panda.jpg';
 import Question from './Question';
 
 class Game extends Component {
@@ -11,15 +13,13 @@ class Game extends Component {
 
     render() {
         const otherItems = [
-            { name: 'barză' },
-            { name: 'balon' },
-            {
-                image: banana,
-                name: 'banană'
-            }
+            { name: 'urs koala', image: koala },
+            { name: 'urs panda', image: panda },
+            { name: 'banană', image: banana },
         ];
+        const correctIndex = Math.floor(Math.random() * 3);
         return (
-            <Question correctAnswerIndex={2}
+            <Question correctAnswerIndex={correctIndex}
                       allItems={otherItems}
                       handleWrongAnswer={this.handleWrongAnswer}
                       handleCorrectAnswer={this.handleCorrectAnswer} />
