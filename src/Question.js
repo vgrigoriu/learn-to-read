@@ -1,20 +1,27 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 
 export default function Question(props) {
-    const allItems = [props.item, ...props.otherItems];
-    const options = allItems.map(item => {
+    const correctAnswer = props.allItems[props.correctAnswerIndex];
+    const options = props.allItems.map(item => {
         const text = item.name.toUpperCase();
+        const handler = (item === correctAnswer)
+                      ? props.handleCorrectAnswer
+                      : props.handleWrongAnswer;
         return (
-            <div onClick={() => alert(text)} key={text}>
+            <Button onClick={handler} key={text}>
                 {text}
-            </div>
+            </Button>
         );
     });
+
     return (
         <div>
-            <img src={props.item.image}
-                 alt={props.item.name}
-                 title={props.item.name} />
+            <div>
+                <img src={correctAnswer.image}
+                    alt={correctAnswer.name}
+                    title={correctAnswer.name} />
+            </div>
             {options}
         </div>
     );
