@@ -31,7 +31,7 @@ class Game extends Component {
         if (this.state.isAnswerCorrect) {
             result = (
                 <Alert bsStyle='success'>
-                    Bravo!
+                    Bravo!&nbsp;
                     <Button onClick={this.nextQuestion}>Mai departe &gt;</Button>
                 </Alert>
             );
@@ -59,6 +59,7 @@ class Game extends Component {
 
     nextQuestion() {
         this.setState({
+            isAnswerCorrect: undefined,
             correctIndex: Math.floor(Math.random() * 3),
             pandaIndex: Math.floor(Math.random() * 3)
         });
