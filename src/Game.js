@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Alert, Button } from 'react-bootstrap';
 import banana from './images/banana.jpg';
 import koala from './images/koala.jpg';
 import panda1 from './images/panda1.jpg';
@@ -11,30 +12,56 @@ class Game extends Component {
         super();
         this.handleWrongAnswer = this.handleWrongAnswer.bind(this);
         this.handleCorrectAnswer = this.handleCorrectAnswer.bind(this);
+        this.nextQuestion = this.nextQuestion.bind(this);
+        this.state = {
+            isAnswerCorrect: undefined,
+            correctIndex: Math.floor(Math.random() * 3),
+            pandaIndex: Math.floor(Math.random() * 3)
+        };
     }
 
     render() {
-        const panda = [panda1, panda2, panda3][Math.floor(Math.random() * 3)];
+        const panda = [panda1, panda2, panda3][this.state.pandaIndex];
         const otherItems = [
             { name: 'urs koala', image: koala },
             { name: 'urs panda', image: panda },
             { name: 'banană', image: banana },
         ];
-        const correctIndex = Math.floor(Math.random() * 3);
+        let result = null;
+        if (this.state.isAnswerCorrect) {
+            result = (
+                <Alert bsStyle='success'>
+                    Bravo!
+                    <Button onClick={this.nextQuestion}>Mai departe &gt;</Button>
+                </Alert>
+            );
+        } else if (this.state.isAnswerCorrect === false) {
+            result = <Alert bsStyle='warning'>Mai încearcă...</Alert>;
+        }
         return (
-            <Question correctAnswerIndex={correctIndex}
-                      allItems={otherItems}
-                      handleWrongAnswer={this.handleWrongAnswer}
-                      handleCorrectAnswer={this.handleCorrectAnswer} />
+            <div>
+                <Question correctAnswerIndex={this.state.correctIndex}
+                        allItems={otherItems}
+                        handleWrongAnswer={this.handleWrongAnswer}
+                        handleCorrectAnswer={this.handleCorrectAnswer} />
+                {result}
+            </div>
         );
     }
 
     handleWrongAnswer() {
-        alert('NU');
+        this.setState({ isAnswerCorrect: false });
     }
 
     handleCorrectAnswer() {
-        alert('DA');
+        this.setState({ isAnswerCorrect: true });
+    }
+
+    nextQuestion() {
+        this.setState({
+            correctIndex: Math.floor(Math.random() * 3),
+            pandaIndex: Math.floor(Math.random() * 3)
+        });
     }
 }
 
