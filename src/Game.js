@@ -82,8 +82,8 @@ class Game extends Component {
     nextQuestion() {
         this.setState({
             isAnswerCorrect: undefined,
+            question: chooseQuestion(),
             correctIndex: Math.floor(Math.random() * 3),
-            pandaIndex: Math.floor(Math.random() * 3)
         });
     }
 }
